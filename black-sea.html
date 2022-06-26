@@ -4,23 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Sea colours</title>
-    <style>section div {width: 100%; height: 60px;}</style>
+
+    <style>
+        @font-face {
+            font-family: 'PT-Root-UI';
+            src: url('PT-Root-UI_Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'PT-Root-UI';
+            src: url('PT-Root-UI_Light.woff') format('woff');
+            font-weight: lighter;
+            font-style: normal;
+        }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        article {text-align: center; line-height: 16vh;}
+        html {font-family: 'PT-Root-UI'; color: #000000;}
+        h1, section{width: 100%; height: 16vh;}
+        h1 {font-size: x-large; font-weight: bold;}
+        section {
+            cursor: pointer; color: #ffffff;
+            font-size: large; font-weight: lighter;
+            position: relative;
+            z-index: 1;
+        }
+        section:hover::after{
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23fff' stroke='%23fff' stroke-width='1.892' stroke-linejoin='round' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M5.891.946c-1.108 0-2 .892-2 2v1.055h10.162c1.108 0 2 .892 2 2v10.055h.947c1.108 0 2-.892 2-2V2.946c0-1.108-.892-2-2-2z' fill-opacity='.6' paint-order='stroke markers fill'/%3E%3Crect width='15.108' height='15.108' x='.946' y='4.001' rx='2' fill-opacity='.598' paint-order='stroke markers fill'/%3E%3C/svg%3E");
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 2vh;
+            right: 2vh;
+            z-index: 2;
+            line-height: normal;
+        }
+    </style>
 </head>
 <body>
     <article>
-        <h1>The Black Sea colours</h1>
-        <section>
-            <h2>#486F73</h2><div style="background-color: #486F73;"></div>
-        </section>
-        <section>
-            <h2>#86B3CA</h2><div style="background-color: #86B3CA;"></div>
-        </section>
-        <section>
-            <h2>#6EB0C6</h2><div style="background-color: #6EB0C6;"></div>
-        </section>
-        <section>
-            <h2>#81A9A6</h2><div style="background-color: #81A9A6;"></div>
-        </section>
+        <header>
+            <h1>The Black Sea colours</h1>
+        </header>
+        <main id="colours"></main>
     </article>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var createColourNode = (colour) => {
+                let node = document.createElement('section');
+                node.setAttribute('style', 'background-color:'+colour);
+                node.innerHTML = colour;
+                node.addEventListener('click', () => {
+                    navigator.clipboard.writeText(colour)
+                });
+                return node;
+            };
+
+            function Colour(colour, date) {            
+                this.node = createColourNode(colour);
+            };
+
+            const colours = [
+                new Colour("#486F73"),
+                new Colour("#81A9A6"),
+                new Colour("#A9BEB7"),
+                new Colour("#6EB0C6"),
+                new Colour("#86B3CA"),
+            ];
+            
+            let node = document.getElementById('colours')
+            colours.forEach(colour => {node.appendChild(colour.node)});
+        });
+    </script>
 </body>
 </html>
