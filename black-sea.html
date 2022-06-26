@@ -64,7 +64,7 @@
             this.node.addEventListener('mouseenter', () => {this.node.classList = ['hover']});
             this.node.addEventListener('mouseleave', () => {this.node.classList = []});
             this.node.addEventListener('click', () => {
-                navigator.clipboard.writeText(colour.colour);
+                navigator.clipboard.writeText(colour);
                 this.node.classList = ['click'];
             });
         };
