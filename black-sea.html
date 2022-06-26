@@ -27,7 +27,15 @@
             cursor: pointer; color: #ffffff;
             font-size: large; font-weight: lighter;
             position: relative;
+            
+            transition-duration: 300ms;
+            transition-property: height line-height;
         }
+
+        section.hover, section.click {
+            height: 25vh; line-height: 25vh;
+        }
+
         section::after{
             content: '';
             position: absolute;
@@ -35,7 +43,7 @@
             height: 1rem;
             padding-left: 1rem;
             top: 0.05rem;
-            opacity: 50%;
+            opacity: 87%;
         }
         section.hover::after{
             content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19.1'%3E%3Cg fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='.9' paint-order='stroke markers fill' transform='translate(-.4 -.5)'%3E%3Cpath d='M6 1a2 2 0 0 0-2 2v1h10a2 2 0 0 1 2 2v10h1a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Z'/%3E%3Crect width='15.1' height='15.1' x='.9' y='4.1' rx='2' ry='2'/%3E%3C/g%3E%3C/svg%3E");
