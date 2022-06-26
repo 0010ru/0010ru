@@ -27,16 +27,14 @@
             cursor: pointer; color: #ffffff;
             font-size: large; font-weight: lighter;
             position: relative;
-            z-index: 1;
         }
         section::after{
             content: '';
+            position: absolute;
             width: 1rem;
             height: 1rem;
             padding-left: 1rem;
-            position: absolute;
             top: 0.05rem;
-            z-index: 2;
             opacity: 50%;
         }
         section.hover::after{
