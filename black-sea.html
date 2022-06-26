@@ -29,15 +29,21 @@
             position: relative;
             z-index: 1;
         }
-        section:hover::after{
-            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%23fff' stroke='%23fff' stroke-width='1.892' stroke-linejoin='round' xmlns:v='https://vecta.io/nano'%3E%3Cpath d='M5.891.946c-1.108 0-2 .892-2 2v1.055h10.162c1.108 0 2 .892 2 2v10.055h.947c1.108 0 2-.892 2-2V2.946c0-1.108-.892-2-2-2z' fill-opacity='.6' paint-order='stroke markers fill'/%3E%3Crect width='15.108' height='15.108' x='.946' y='4.001' rx='2' fill-opacity='.598' paint-order='stroke markers fill'/%3E%3C/svg%3E");
-            width: 20px;
-            height: 20px;
+        section::after{
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            padding-left: 1rem;
             position: absolute;
-            top: 2vh;
-            right: 2vh;
+            top: 0.05rem;
             z-index: 2;
-            line-height: normal;
+            opacity: 50%;
+        }
+        section.hover::after{
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19.1'%3E%3Cg fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='.9' paint-order='stroke markers fill' transform='translate(-.4 -.5)'%3E%3Cpath d='M6 1a2 2 0 0 0-2 2v1h10a2 2 0 0 1 2 2v10h1a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Z'/%3E%3Crect width='15.1' height='15.1' x='.9' y='4.1' rx='2' ry='2'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        section.click::after{
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18.7 13.7'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='.9' d='m.5 7.4 6.9 5.8L18.3.5'/%3E%3C/svg%3E");
         }
     </style>
 </head>
@@ -50,31 +56,31 @@
     </article>
 
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', (event) => {
-            var createColourNode = (colour) => {
-                let node = document.createElement('section');
-                node.setAttribute('style', 'background-color:'+colour);
-                node.innerHTML = colour;
-                node.addEventListener('click', () => {
-                    navigator.clipboard.writeText(colour)
-                });
-                return node;
-            };
+        function Colour(colour) {
+            this.node = document.createElement('section');
+            this.node.style.backgroundColor = colour;
+            this.node.innerHTML = colour;
 
-            function Colour(colour, date) {            
-                this.node = createColourNode(colour);
-            };
+            this.node.addEventListener('mouseenter', () => {this.node.classList = ['hover']});
+            this.node.addEventListener('mouseleave', () => {this.node.classList = []});
+            this.node.addEventListener('click', () => {
+                navigator.clipboard.writeText(colour.colour);
+                this.node.classList = ['click'];
+            });
+        };
 
-            const colours = [
-                new Colour("#486F73"),
-                new Colour("#81A9A6"),
-                new Colour("#A9BEB7"),
-                new Colour("#6EB0C6"),
-                new Colour("#86B3CA"),
-            ];
-            
-            let node = document.getElementById('colours')
-            colours.forEach(colour => {node.appendChild(colour.node)});
+        let colours = [
+            new Colour("#486F73"),
+            new Colour("#81A9A6"),
+            new Colour("#A9BEB7"),
+            new Colour("#6EB0C6"),
+            new Colour("#86B3CA"),
+            new Colour("#7C9CB4"),
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let coloursNode = document.getElementById('colours');
+            colours.forEach(colour => {coloursNode.appendChild(colour.node)});
         });
     </script>
 </body>
