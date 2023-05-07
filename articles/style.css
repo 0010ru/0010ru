@@ -3,3 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+html {
+    font-family: 'PT Serif', serif;
+    font-size: 16px;
+}
+
+html, body, header {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
