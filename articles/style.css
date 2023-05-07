@@ -14,7 +14,7 @@ html, body, .container {
     height: 100%;
 }
 
-html, body, header {
+html, body, header, main, article {
     width: 100%;
 }
 
@@ -53,8 +53,11 @@ header {
     max-width: 45px;
 }
 
-h1 {
+h1, h2 {
     font-family: 'PT Serif Caption', serif;
+}
+
+h1{
     font-size: 52px;
 }
 
@@ -77,5 +80,15 @@ header ul li {
     padding: 0 0 0 10px;
     color: #646464;
 
+}
+
+main h2 {
+    padding: 32px 4px 0 0;
+    font-size: 32px;
+}
+
+main p {
+    padding: 16px 4px;
+    font-size: 16px;
 }
 
